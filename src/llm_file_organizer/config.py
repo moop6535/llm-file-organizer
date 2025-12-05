@@ -37,9 +37,7 @@ class ScanFilters:
         """Check if a file size matches the filter."""
         if self.min_size > 0 and size < self.min_size:
             return False
-        if self.max_size > 0 and size > self.max_size:
-            return False
-        return True
+        return not (self.max_size > 0 and size > self.max_size)
 
     def matches_extension(self, ext: str | None) -> bool:
         """Check if a file extension matches the filter."""
@@ -49,17 +47,13 @@ class ScanFilters:
 
         if self.exclude_extensions and ext in self.exclude_extensions:
             return False
-        if self.extensions and ext not in self.extensions:
-            return False
-        return True
+        return not (self.extensions and ext not in self.extensions)
 
     def matches_date(self, modified: datetime) -> bool:
         """Check if a modification date matches the filter."""
         if self.modified_after and modified < self.modified_after:
             return False
-        if self.modified_before and modified > self.modified_before:
-            return False
-        return True
+        return not (self.modified_before and modified > self.modified_before)
 
 
 @dataclass

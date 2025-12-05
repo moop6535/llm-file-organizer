@@ -1,7 +1,6 @@
 """Interactive CLI for LLM File Organizer."""
 
 import os
-import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -14,7 +13,7 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
-from . import __app_name__, __version__
+from . import __version__
 from .config import Config, LLMProvider, ScanFilters, get_filter_presets, parse_size
 from .plan_manager import PlanManager, get_all_targets_with_plans
 from .scanner import Scanner
@@ -158,7 +157,7 @@ def get_file_filters() -> ScanFilters:
     choices = [Choice(value=None, name="No filter (organize all files)")]
     choices.append(Separator("── Presets ──"))
 
-    for name, preset in presets.items():
+    for name, _preset in presets.items():
         desc = descriptions.get(name, "")
         display = f"{name.replace('_', ' ').title()} ({desc})"
         choices.append(Choice(value=name, name=display))
@@ -707,10 +706,7 @@ def _show_scan_stats(config: Config, stats: dict) -> None:
 def _has_unknown_extensions(extensions: dict) -> bool:
     """Check if there are files with unknown extensions that need LLM."""
     from .classifier import EXTENSION_TO_CATEGORY
-    for ext in extensions.keys():
-        if ext.lower() not in EXTENSION_TO_CATEGORY:
-            return True
-    return False
+    return any(ext.lower() not in EXTENSION_TO_CATEGORY for ext in extensions)
 
 
 def show_results(success: int, errors: int, plan_file: Path, executed: bool = False) -> None:
@@ -749,7 +745,7 @@ def show_results(success: int, errors: int, plan_file: Path, executed: bool = Fa
     else:
         console.print(
             Panel(
-                f"[yellow]No moves to plan.[/yellow]",
+                "[yellow]No moves to plan.[/yellow]",
                 title="Complete",
                 border_style="yellow",
             )

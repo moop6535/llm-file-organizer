@@ -157,7 +157,7 @@ class OpenAIClient(LLMClient):
         except ImportError:
             raise ImportError(
                 "OpenAI package not installed. Install with: pip install openai"
-            )
+            ) from None
 
         api_key = os.environ.get("OPENAI_API_KEY")
         if not api_key:
@@ -205,7 +205,7 @@ class AnthropicClient(LLMClient):
         except ImportError:
             raise ImportError(
                 "Anthropic package not installed. Install with: pip install anthropic"
-            )
+            ) from None
 
         api_key = os.environ.get("ANTHROPIC_API_KEY")
         if not api_key:
@@ -256,7 +256,7 @@ class OllamaClient(LLMClient):
         except ImportError:
             raise ImportError(
                 "httpx package not installed. Install with: pip install httpx"
-            )
+            ) from None
 
         self.model = model
         self.base_url = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
@@ -558,13 +558,13 @@ class Classifier:
             results = await self._run_batches_async(batches)
 
             # Merge results
-            for (items, item_type, _, _), classifications in zip(batches, results):
+            for (_, item_type, _, _), classifications in zip(batches, results, strict=True):
                 target = file_classifications if item_type == "files" else dir_classifications
                 for category, names in classifications.items():
                     target[category].extend(names)
 
             if self.verbose:
-                print(f"  Classification complete!")
+                print("  Classification complete!")
 
         # Consolidation pass
         if self.consolidate_enabled:

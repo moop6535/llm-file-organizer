@@ -203,7 +203,7 @@ def main(args: list[str] | None = None) -> int:
 
     if parsed.interactive:
         try:
-            from .interactive import run_interactive, show_results, console
+            from .interactive import console, run_interactive, show_results
         except ImportError:
             print("Error: Interactive mode requires 'rich' and 'InquirerPy' packages.")
             print("Install with: pip install rich InquirerPy")

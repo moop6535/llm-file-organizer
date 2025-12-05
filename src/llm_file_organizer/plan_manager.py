@@ -1,7 +1,7 @@
 """Plan status tracking and management."""
 
 import json
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Literal
@@ -213,9 +213,7 @@ class PlanManager:
 
         for plan in index.plans:
             # Always keep pending plans
-            if plan.status == "pending":
-                to_keep.append(plan)
-            elif len(to_keep) < keep_last:
+            if plan.status == "pending" or len(to_keep) < keep_last:
                 to_keep.append(plan)
             else:
                 to_delete.append(plan)

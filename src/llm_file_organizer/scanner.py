@@ -1,12 +1,11 @@
 """File and directory scanning functionality."""
 
 import fnmatch
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
 from .config import Config
-
 
 # Project markers - files/directories that indicate a project root
 PROJECT_MARKERS = {
@@ -148,10 +147,7 @@ class Scanner:
             return True
 
         # Skip if matches ignore pattern
-        if self._matches_ignore_pattern(item):
-            return True
-
-        return False
+        return bool(self._matches_ignore_pattern(item))
 
     def is_project_directory(self, directory: Path) -> bool:
         """
@@ -269,17 +265,16 @@ class Scanner:
                             )
                         )
 
-                    if should_recurse:
-                        # In flatten mode, non-projects at depth 0 get flattened
-                        # but we still respect the scan_depth limit
-                        if self.config.flatten_mode or self.config.scan_depth == -1 or current_depth < self.config.scan_depth:
-                            self._scan_directory(
-                                item,
-                                current_depth + 1,
-                                files,
-                                directories,
-                                in_project=in_project or is_project,
-                            )
+                    # In flatten mode, non-projects at depth 0 get flattened
+                    # but we still respect the scan_depth limit
+                    if should_recurse and (self.config.flatten_mode or self.config.scan_depth == -1 or current_depth < self.config.scan_depth):
+                        self._scan_directory(
+                            item,
+                            current_depth + 1,
+                            files,
+                            directories,
+                            in_project=in_project or is_project,
+                        )
 
             except (PermissionError, OSError):
                 continue
