@@ -126,11 +126,11 @@ class Config:
     def default_model_for_provider(provider: LLMProvider) -> str:
         """Get the default model for a provider."""
         defaults = {
-            "openai": "gpt-4o-mini",
+            "openai": "gpt-5-mini",
             "anthropic": "claude-sonnet-4-20250514",
             "ollama": "llama3.2",
         }
-        return defaults.get(provider, "gpt-4o-mini")
+        return defaults.get(provider, "gpt-5-mini")
 
     @staticmethod
     def get_app_dir() -> Path:

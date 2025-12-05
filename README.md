@@ -47,7 +47,7 @@ That's it. The interactive wizard handles the rest.
 
 ```bash
 # Pick your AI provider
-pip install "fs-cleaner[openai]"      # GPT-4o-mini (default)
+pip install "fs-cleaner[openai]"      # gpt-5-mini (default)
 pip install "fs-cleaner[anthropic]"   # Claude
 pip install "fs-cleaner[ollama]"      # Local models (free!)
 pip install "fs-cleaner[all]"         # All of the above

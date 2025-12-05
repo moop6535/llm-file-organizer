@@ -39,7 +39,7 @@ def test_custom_output_dir():
 
 def test_default_models():
     """Test default models for each provider."""
-    assert Config.default_model_for_provider("openai") == "gpt-4o-mini"
+    assert Config.default_model_for_provider("openai") == "gpt-5-mini"
     assert Config.default_model_for_provider("anthropic") == "claude-sonnet-4-20250514"
     assert Config.default_model_for_provider("ollama") == "llama3.2"
 
