@@ -139,7 +139,7 @@ class Config:
 
     def _get_target_slug(self) -> str:
         """Create a safe directory name from the target path."""
-        # Convert path to a safe slug: /Users/mmei/Downloads -> Users_mmei_Downloads
+        # Convert path to a safe slug: /Users/john/Downloads -> Users_john_Downloads
         parts = self.target_dir.resolve().parts
         # Skip the root "/" on Unix
         if parts and parts[0] == "/":
