@@ -1,4 +1,4 @@
-"""Entry point for python -m fs_cleaner."""
+"""Entry point for python -m llm_file_organizer."""
 
 import sys
 

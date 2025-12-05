@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from fs_cleaner.config import Config
-from fs_cleaner.scanner import Scanner
+from llm_file_organizer.config import Config
+from llm_file_organizer.scanner import Scanner
 
 
 @pytest.fixture

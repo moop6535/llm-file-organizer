@@ -6,9 +6,9 @@ from pathlib import Path
 
 import pytest
 
-from fs_cleaner.config import Config
-from fs_cleaner.organizer import MoveOperation, Organizer
-from fs_cleaner.scanner import DirectoryInfo, FileInfo
+from llm_file_organizer.config import Config
+from llm_file_organizer.organizer import MoveOperation, Organizer
+from llm_file_organizer.scanner import DirectoryInfo, FileInfo
 from datetime import datetime
 
 

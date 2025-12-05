@@ -3,14 +3,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "fs-cleaner"
+name = "llm-file-organizer"
 version = "0.1.0"
 description = "AI-powered filesystem cleanup tool with interactive CLI"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
 authors = [
-    { name = "Moop", email = "mmei@kumofy.com" }
+    { name = "Moop" }
 ]
 keywords = [
     "filesystem",
@@ -66,18 +66,18 @@ dev = [
 ]
 
 [project.scripts]
-fs-cleaner = "fs_cleaner.cli:main"
+lfo = "llm_file_organizer.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/moop6535/fs-cleaner"
-Repository = "https://github.com/moop6535/fs-cleaner"
-Issues = "https://github.com/moop6535/fs-cleaner/issues"
+Homepage = "https://github.com/moop6535/llm-file-organizer"
+Repository = "https://github.com/moop6535/llm-file-organizer"
+Issues = "https://github.com/moop6535/llm-file-organizer/issues"
 
 [tool.hatch.build.targets.sdist]
-include = ["src/fs_cleaner"]
+include = ["src/llm_file_organizer"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/fs_cleaner"]
+packages = ["src/llm_file_organizer"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

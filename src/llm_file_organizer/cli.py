@@ -1,4 +1,4 @@
-"""Command-line interface for FS Cleaner."""
+"""Command-line interface for LLM File Organizer."""
 
 import argparse
 import sys
@@ -21,14 +21,14 @@ def create_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  fs-cleaner                           # Interactive mode (recommended)
-  fs-cleaner ~/Downloads               # Organize specific directory
-  fs-cleaner --depth 2                 # Scan 2 levels deep
-  fs-cleaner --filter images           # Only organize images
-  fs-cleaner --execute                 # Classify and execute immediately
-  fs-cleaner --from-plan               # Execute from saved plan
-  fs-cleaner --undo                    # Undo last organization
-  fs-cleaner --provider anthropic      # Use Claude instead of GPT
+  llm-file-organizer                           # Interactive mode (recommended)
+  llm-file-organizer ~/Downloads               # Organize specific directory
+  llm-file-organizer --depth 2                 # Scan 2 levels deep
+  llm-file-organizer --filter images           # Only organize images
+  llm-file-organizer --execute                 # Classify and execute immediately
+  llm-file-organizer --from-plan               # Execute from saved plan
+  llm-file-organizer --undo                    # Undo last organization
+  llm-file-organizer --provider anthropic      # Use Claude instead of GPT
 
 Environment Variables:
   OPENAI_API_KEY      Required for OpenAI provider (default)
@@ -317,7 +317,7 @@ def main(args: list[str] | None = None) -> int:
     # Handle undo
     if parsed.undo:
         if not parsed.quiet:
-            print("FS Cleaner - Undo")
+            print("LLM File Organizer - Undo")
             print("=" * 40)
         organizer.undo()
         return 0
@@ -325,7 +325,7 @@ def main(args: list[str] | None = None) -> int:
     # Handle execute from plan
     if parsed.from_plan:
         if not parsed.quiet:
-            print("FS Cleaner - Execute from Plan")
+            print("LLM File Organizer - Execute from Plan")
             print("=" * 40)
         try:
             moves = organizer.load_plan()
@@ -339,7 +339,7 @@ def main(args: list[str] | None = None) -> int:
 
     # Normal flow: scan, classify, organize
     if not parsed.quiet:
-        print("FS Cleaner")
+        print("LLM File Organizer")
         print("=" * 40)
         print(f"Target: {config.target_dir}")
         print(f"Depth: {config.scan_depth}")

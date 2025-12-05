@@ -221,7 +221,7 @@ class Organizer:
         if plan_file is None or not plan_file.exists():
             raise FileNotFoundError(
                 f"No plan file found for {self.config.target_dir}\n"
-                "Run fs-cleaner first to generate a plan."
+                "Run llm-file-organizer first to generate a plan."
             )
 
         with open(plan_file, encoding="utf-8") as f:
@@ -322,7 +322,7 @@ class Organizer:
             console.print(
                 Panel(
                     f"[bold green]Successfully moved {success_count:,} items![/bold green]\n\n"
-                    f"Run [cyan]fs-cleaner --undo[/cyan] to revert if needed.",
+                    f"Run [cyan]llm-file-organizer --undo[/cyan] to revert if needed.",
                     title="Complete",
                     border_style="green",
                 )
@@ -332,7 +332,7 @@ class Organizer:
                 Panel(
                     f"[green]Moved {success_count:,} items[/green], "
                     f"[red]{error_count:,} errors[/red]\n\n"
-                    f"Run [cyan]fs-cleaner --undo[/cyan] to revert if needed.",
+                    f"Run [cyan]llm-file-organizer --undo[/cyan] to revert if needed.",
                     title="Complete",
                     border_style="yellow",
                 )

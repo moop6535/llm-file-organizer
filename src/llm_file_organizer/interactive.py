@@ -1,4 +1,4 @@
-"""Interactive CLI for FS Cleaner."""
+"""Interactive CLI for LLM File Organizer."""
 
 import os
 import sys
@@ -29,9 +29,9 @@ def print_banner() -> None:
     """Print the application banner."""
     console.print()
     logo = Text()
-    logo.append("    ╔═╗╔═╗  ╔═╗┬  ┌─┐┌─┐┌┐┌┌─┐┬─┐\n", style="bold cyan")
-    logo.append("    ╠╣ ╚═╗  ║  │  ├┤ ├─┤│││├┤ ├┬┘\n", style="bold cyan")
-    logo.append("    ╚  ╚═╝  ╚═╝┴─┘└─┘┴ ┴┘└┘└─┘┴└─", style="bold cyan")
+    logo.append("    ╦  ╦  ╔╦╗  ╔═╗┬┬  ┌─┐  ╔═╗┬─┐┌─┐┌─┐┌┐┌┬┌─┐┌─┐┬─┐\n", style="bold cyan")
+    logo.append("    ║  ║  ║║║  ╠╣ ││  ├┤   ║ ║├┬┘│ ┬├─┤││││┌─┘├┤ ├┬┘\n", style="bold cyan")
+    logo.append("    ╩═╝╩═╝╩ ╩  ╚  ┴┴─┘└─┘  ╚═╝┴└─└─┘┴ ┴┘└┘┴└─┘└─┘┴└─", style="bold cyan")
     console.print(logo)
     console.print()
     subtitle = Text()
@@ -720,7 +720,7 @@ def show_results(success: int, errors: int, plan_file: Path, executed: bool = Fa
             console.print(
                 Panel(
                     f"[green]Successfully moved {success} items![/green]\n\n"
-                    f"Run [cyan]fs-cleaner --undo[/cyan] to revert if needed.",
+                    f"Run [cyan]llm-file-organizer --undo[/cyan] to revert if needed.",
                     title="Complete",
                     border_style="green",
                 )
@@ -740,8 +740,8 @@ def show_results(success: int, errors: int, plan_file: Path, executed: bool = Fa
                 f"[green]Plan created with {success} moves![/green]\n\n"
                 f"Plan saved to: {plan_file}\n\n"
                 f"To execute later, run:\n"
-                f"  [cyan]fs-cleaner {plan_file.parent.parent} --from-plan[/cyan]\n\n"
-                f"Or just run [cyan]fs-cleaner[/cyan] and choose 'Resume from saved plan'",
+                f"  [cyan]lfo {plan_file.parent.parent} --from-plan[/cyan]\n\n"
+                f"Or just run [cyan]lfo[/cyan] and choose 'Resume from saved plan'",
                 title="Plan Saved",
                 border_style="green",
             )

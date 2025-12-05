@@ -1,4 +1,4 @@
-"""Configuration management for FS Cleaner."""
+"""Configuration management for LLM File Organizer."""
 
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
@@ -64,7 +64,7 @@ class ScanFilters:
 
 @dataclass
 class Config:
-    """Configuration settings for FS Cleaner."""
+    """Configuration settings for LLM File Organizer."""
 
     # Target directory to organize
     target_dir: Path = field(default_factory=Path.cwd)
@@ -111,7 +111,7 @@ class Config:
     # Skip hidden files/directories
     skip_hidden: bool = True
 
-    # Override app directory (for testing) - None means use default ~/.fs-cleaner
+    # Override app directory (for testing) - None means use default ~/.llm-file-organizer
     _app_dir: Path | None = field(default=None, repr=False)
 
     def __post_init__(self) -> None:
@@ -134,8 +134,8 @@ class Config:
 
     @staticmethod
     def get_app_dir() -> Path:
-        """Get the application data directory (~/.fs-cleaner)."""
-        return Path.home() / ".fs-cleaner"
+        """Get the application data directory (~/.llm-file-organizer)."""
+        return Path.home() / ".llm-file-organizer"
 
     def _get_target_slug(self) -> str:
         """Create a safe directory name from the target path."""

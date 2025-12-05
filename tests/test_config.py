@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from fs_cleaner.config import Config
+from llm_file_organizer.config import Config
 
 
 def test_default_config():
@@ -63,8 +63,8 @@ def test_path_properties():
     """Test path property methods."""
     config = Config(target_dir=Path("/test"))
 
-    # Plans are stored in ~/.fs-cleaner/plans/<target_slug>/
-    expected_base = Path.home() / ".fs-cleaner" / "plans" / "test"
+    # Plans are stored in ~/.llm-file-organizer/plans/<target_slug>/
+    expected_base = Path.home() / ".llm-file-organizer" / "plans" / "test"
     assert config.config_dir == expected_base
     assert config.undo_file == expected_base / "undo_log.json"
 

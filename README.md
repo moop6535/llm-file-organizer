@@ -1,16 +1,16 @@
-# FS Cleaner
+# LLM File Organizer
 
 **Stop manually organizing files. Let AI do it.**
 
-FS Cleaner uses LLMs to intelligently categorize and organize your cluttered directories. Point it at your Downloads folder, answer a few questions, and watch years of digital chaos transform into tidy, labeled folders.
+LLM File Organizer uses LLMs to intelligently categorize and organize your cluttered directories. Point it at your Downloads folder, answer a few questions, and watch years of digital chaos transform into tidy, labeled folders.
 
 ![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
 ```
-    ╔═╗╔═╗  ╔═╗┬  ┌─┐┌─┐┌┐┌┌─┐┬─┐
-    ╠╣ ╚═╗  ║  │  ├┤ ├─┤│││├┤ ├┬┘
-    ╚  ╚═╝  ╚═╝┴─┘└─┘┴ ┴┘└┘└─┘┴└─
+    ╦  ╦  ╔╦╗  ╔═╗┬┬  ┌─┐  ╔═╗┬─┐┌─┐┌─┐┌┐┌┬┌─┐┌─┐┬─┐
+    ║  ║  ║║║  ╠╣ ││  ├┤   ║ ║├┬┘│ ┬├─┤││││┌─┘├┤ ├┬┘
+    ╩═╝╩═╝╩ ╩  ╚  ┴┴─┘└─┘  ╚═╝┴└─└─┘┴ ┴┘└┘┴└─┘└─┘┴└─
 
     AI-Powered Filesystem Organizer
 ```
@@ -19,20 +19,20 @@ FS Cleaner uses LLMs to intelligently categorize and organize your cluttered dir
 
 ```bash
 # Install
-pip install "fs-cleaner[openai]"
+pip install "llm-file-organizer[openai]"
 
 # Set your API key
 export OPENAI_API_KEY="sk-..."
 
 # Run it
-fs-cleaner ~/Downloads
+lfo ~/Downloads
 ```
 
 That's it. The interactive wizard handles the rest.
 
 ---
 
-## Why FS Cleaner?
+## Why LLM File Organizer?
 
 | The Problem | The Solution |
 |-------------|--------------|
@@ -47,17 +47,17 @@ That's it. The interactive wizard handles the rest.
 
 ```bash
 # Pick your AI provider
-pip install "fs-cleaner[openai]"      # gpt-5-mini (default)
-pip install "fs-cleaner[anthropic]"   # Claude
-pip install "fs-cleaner[ollama]"      # Local models (free!)
-pip install "fs-cleaner[all]"         # All of the above
+pip install "llm-file-organizer[openai]"      # gpt-5-mini (default)
+pip install "llm-file-organizer[anthropic]"   # Claude
+pip install "llm-file-organizer[ollama]"      # Local models (free!)
+pip install "llm-file-organizer[all]"         # All of the above
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/yourusername/fs-cleaner.git
-cd fs-cleaner
+git clone https://github.com/moop6535/llm-file-organizer.git
+cd llm-file-organizer
 pip install -e ".[all,dev]"
 ```
 
@@ -79,7 +79,7 @@ pip install -e ".[all,dev]"
                             │
                             ▼
                     ┌───────────────┐
-                    │   FS Cleaner  │
+                    │   LLM File Organizer  │
                     │   (AI Magic)  │
                     └───────────────┘
                             │
@@ -114,10 +114,10 @@ Your data stays on your machine. The AI just reads the labels on the boxes.
 
 ## Interactive Mode
 
-Run `fs-cleaner` with no arguments for the full guided experience:
+Run `lfo` with no arguments for the full guided experience:
 
 ```
-❯ fs-cleaner
+❯ lfo
 
     ╔═╗╔═╗  ╔═╗┬  ┌─┐┌─┐┌┐┌┌─┐┬─┐
     ╠╣ ╚═╗  ║  │  ├┤ ├─┤│││├┤ ├┬┘
@@ -154,7 +154,7 @@ Run `fs-cleaner` with no arguments for the full guided experience:
 ## CLI Reference
 
 ```
-fs-cleaner [TARGET] [OPTIONS]
+lfo [TARGET] [OPTIONS]
 
 Arguments:
   TARGET                   Directory to organize (default: interactive)
@@ -193,46 +193,46 @@ Output:
 
 ```bash
 # Interactive mode - the recommended way
-fs-cleaner
+lfo
 
 # Organize a specific directory
-fs-cleaner ~/Downloads
+lfo ~/Downloads
 
 # Execute immediately (skip the review step)
-fs-cleaner ~/Downloads --execute
+lfo ~/Downloads --execute
 ```
 
 ### Filtering
 
 ```bash
 # Only images
-fs-cleaner ~/Pictures --filter images
+lfo ~/Pictures --filter images
 
 # Only large files (100MB+)
-fs-cleaner --filter large_files
+lfo --filter large_files
 
 # Only files older than a year (digital archaeology)
-fs-cleaner --filter old_files
+lfo --filter old_files
 
 # Only specific extensions
-fs-cleaner --ext "pdf,docx,xlsx"
+lfo --ext "pdf,docx,xlsx"
 
 # Combine size filters
-fs-cleaner --min-size 10MB --max-size 500MB
+lfo --min-size 10MB --max-size 500MB
 ```
 
 ### Deep Scans
 
 ```bash
 # Scan 2 levels deep
-fs-cleaner ~/Projects --depth 2
+lfo ~/Projects --depth 2
 
 # Scan everything (brave mode)
-fs-cleaner ~/Projects --depth -1
+lfo ~/Projects --depth -1
 
 # Flatten mode: pull files out of subdirectories
 # (Projects like git repos are detected and kept intact)
-fs-cleaner ~/Projects --depth 2 --flatten
+lfo ~/Projects --depth 2 --flatten
 ```
 
 ### Different AI Providers
@@ -240,29 +240,29 @@ fs-cleaner ~/Projects --depth 2 --flatten
 ```bash
 # Use Claude instead of GPT
 export ANTHROPIC_API_KEY="sk-ant-..."
-fs-cleaner --provider anthropic
+lfo --provider anthropic
 
 # Use local Ollama (free, private)
-fs-cleaner --provider ollama --model llama3.2
+lfo --provider ollama --model llama3.2
 
 # Use a specific model
-fs-cleaner --provider openai --model gpt-4o
+lfo --provider openai --model gpt-4o
 ```
 
 ### The Two-Step Workflow
 
 ```bash
 # Step 1: Classify and create a plan (no files move yet)
-fs-cleaner ~/Downloads
+lfo ~/Downloads
 
 # Step 2: Review the plan
-cat ~/.fs-cleaner/plans/Users_you_Downloads/plan_*.json
+cat ~/.lfo/plans/Users_you_Downloads/plan_*.json
 
 # Step 3: Execute when ready
-fs-cleaner ~/Downloads --from-plan
+lfo ~/Downloads --from-plan
 
 # Oops? Undo everything
-fs-cleaner ~/Downloads --undo
+lfo ~/Downloads --undo
 ```
 
 ---
@@ -286,7 +286,7 @@ fs-cleaner ~/Downloads --undo
 
 ### Project Detection
 
-FS Cleaner automatically detects project directories and keeps them intact. It looks for:
+LLM File Organizer automatically detects project directories and keeps them intact. It looks for:
 
 - Version control: `.git`, `.svn`, `.hg`
 - Python: `pyproject.toml`, `setup.py`, `requirements.txt`
@@ -299,7 +299,7 @@ Your `react-app/` folder won't get its files scattered across 15 different categ
 
 ### Smart Classification Mode
 
-By default, FS Cleaner uses **Smart Mode**:
+By default, LLM File Organizer uses **Smart Mode**:
 
 1. Files with known extensions (`.jpg`, `.pdf`, `.py`, etc.) are auto-classified locally
 2. Only unknown/ambiguous files get sent to the AI
@@ -309,7 +309,7 @@ Want the AI to classify everything for smarter grouping? Use **Full LLM Mode** i
 
 ### Category Consolidation
 
-If the AI gets too creative with categories (looking at you, "Miscellaneous_Data_Files_Various"), FS Cleaner automatically consolidates similar categories into broader groups.
+If the AI gets too creative with categories (looking at you, "Miscellaneous_Data_Files_Various"), LLM File Organizer automatically consolidates similar categories into broader groups.
 
 ---
 
@@ -332,7 +332,7 @@ OPENAI_API_KEY=sk-proj-...
 ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-FS Cleaner loads it automatically.
+LLM File Organizer loads it automatically.
 
 ---
 
@@ -342,7 +342,7 @@ We know you're trusting us with your files. Here's how we keep them safe:
 
 | Feature | What It Does |
 |---------|--------------|
-| **Dry-run by default** | Running `fs-cleaner ~/Downloads` creates a plan but moves nothing |
+| **Dry-run by default** | Running `lfo ~/Downloads` creates a plan but moves nothing |
 | **Explicit confirmation** | You must type `yes` before any files move |
 | **Undo log first** | The undo log is saved *before* any move happens |
 | **No overwrites** | Existing files at destination are skipped |
@@ -365,8 +365,8 @@ Use Ollama! It runs locally on your machine:
 # Install Ollama (https://ollama.com)
 ollama pull llama3.2
 
-# Run FS Cleaner with Ollama
-fs-cleaner --provider ollama
+# Run LLM File Organizer with Ollama
+lfo --provider ollama
 ```
 
 ### Can I customize the categories?
@@ -375,15 +375,15 @@ Not yet, but it's on the roadmap. For now, the AI picks categories based on your
 
 ### What happens to empty folders after undo?
 
-FS Cleaner offers to clean them up. You'll be prompted after the undo completes.
+LLM File Organizer offers to clean them up. You'll be prompted after the undo completes.
 
 ---
 
 ## Development
 
 ```bash
-git clone https://github.com/yourusername/fs-cleaner.git
-cd fs-cleaner
+git clone https://github.com/moop6535/llm-file-organizer.git
+cd llm-file-organizer
 
 # Create virtual environment
 python -m venv .venv
